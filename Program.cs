@@ -73,8 +73,8 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
         WriteLine("  Reference to mixed project types: <ReferenceOutputAssembly> needed");
         metadata.Add(new KeyValuePair<string, string>("ReferenceOutputAssembly", "false"));
     }
-
     project.AddItem(ProjectReferenceItemType, projectRelativePath, metadata);
+
     project.Save();
     WriteLine("  Added as ProjectReference");
 }
@@ -94,5 +94,3 @@ static bool IsReferenceOutputAssemblyNeeded(string path1, string path2)
 {
     return Path.GetExtension(path1) != Path.GetExtension(path2);
 }
-
-
