@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConvertSlnDepToProjRef": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\repos\\Dependencies\\Dependencies.sln\""
+    }
+  }
+}
