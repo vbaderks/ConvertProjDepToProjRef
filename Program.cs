@@ -1,9 +1,12 @@
 ﻿using Microsoft.Build.Construction;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using static System.Console;
+
+[assembly: CLSCompliant(true)]
 
 const int Success = 0;
 const int Failure = 1;
@@ -52,7 +55,7 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
 
     string projectRelativePath = Path.GetRelativePath(basePath!, referencedProject.AbsolutePath);
 
-    if (HasProjectReference(project, projectRelativePath, basePath))
+    if (HasProjectReference(project, projectRelativePath, basePath!))
     {
         WriteLine("  Project reference already exists, skipping");
         return;
@@ -63,7 +66,7 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
     if (string.IsNullOrEmpty(project.Sdk))
     {
         WriteLine("  Classic project format (Sdk property not used): Project GUID needed needed");
-        metadata.Add(new KeyValuePair<string, string>("Project", referencedProject.ProjectGuid.ToLower()));
+        metadata.Add(new KeyValuePair<string, string>("Project", referencedProject.ProjectGuid.ToLower(CultureInfo.InvariantCulture)));
     }
     if (IsReferenceOutputAssemblyNeeded(projectPath, referencedProject.AbsolutePath))
     {
@@ -84,10 +87,12 @@ bool HasProjectReference(ProjectRootElement project, string projectRelativePath,
 static bool PathEquals(string relativePath1, string relativePath2, string basePath)
 {
     return Path.GetFullPath(relativePath1, basePath)
-        .Equals(Path.GetFullPath(relativePath2, basePath), StringComparison.InvariantCultureIgnoreCase);
+        .Equals(Path.GetFullPath(relativePath2, basePath), StringComparison.OrdinalIgnoreCase);
 }
 
 static bool IsReferenceOutputAssemblyNeeded(string path1, string path2)
 {
     return Path.GetExtension(path1) != Path.GetExtension(path2);
 }
+
+
