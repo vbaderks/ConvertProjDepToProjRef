@@ -1,4 +1,4 @@
-﻿using Microsoft.Build.Construction;
+using Microsoft.Build.Construction;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -65,15 +65,20 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
 
     if (string.IsNullOrEmpty(project.Sdk))
     {
-        WriteLine("  Classic project format (Sdk property not used): Project GUID needed needed");
+        WriteLine("  Classic project format (Sdk property not used): Project GUID needed");
         metadata.Add(new KeyValuePair<string, string>("Project", referencedProject.ProjectGuid.ToLower(CultureInfo.InvariantCulture)));
+
+        if (Path.GetExtension(projectPath).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+        {
+            metadata.Add(new KeyValuePair<string, string>("Name", referencedProject.ProjectName));
+        }
     }
     if (IsReferenceOutputAssemblyNeeded(projectPath, referencedProject.AbsolutePath))
     {
         WriteLine("  Reference to mixed project types: <ReferenceOutputAssembly> needed");
         metadata.Add(new KeyValuePair<string, string>("ReferenceOutputAssembly", "false"));
     }
-    project.AddItem(ProjectReferenceItemType, projectRelativePath, metadata);
+    _ = project.AddItem(ProjectReferenceItemType, projectRelativePath, metadata);
 
     project.Save();
     WriteLine("  Added as ProjectReference");
