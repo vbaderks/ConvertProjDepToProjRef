@@ -23,7 +23,7 @@ try
     var solutionPath = args[0];
     if (!Path.IsPathRooted(solutionPath))
     {
-        solutionPath = Path.Combine(Directory.GetCurrentDirectory(), solutionPath);
+        solutionPath = Path.GetFullPath(solutionPath, Directory.GetCurrentDirectory());
     }
 
     var solutionFile = SolutionFile.Parse(solutionPath);
