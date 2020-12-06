@@ -12,7 +12,6 @@ into MSBuild project references (ProjectReference) in project files. It will do 
 
 * git clone
 * dotnet build
-* dotnet publish -r win-x64 -p:PublishSingleFile=true --self-contained true
 
 ## Usage Instructions
 
