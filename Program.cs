@@ -21,6 +21,11 @@ if (args.Length < 1)
 try
 {
     var solutionPath = args[0];
+    if (!Path.IsPathRooted(solutionPath))
+    {
+        solutionPath = Path.Combine(Directory.GetCurrentDirectory(), solutionPath);
+    }
+
     var solutionFile = SolutionFile.Parse(solutionPath);
     WriteLine("Converting solution {0}", solutionPath);
 
