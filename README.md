@@ -17,4 +17,5 @@ into MSBuild project references (ProjectReference) in project files. It will do 
 
 * Run the tool on a solution file: ConvertProjDepToProjRef.exe MySolution.sln
 * Update C++ projects that only perform custom builds as ConfigurationType “Utility”
+* Remove the RuntimeIdentifier element for C# projects that only perform custom builds
 * Use a text editor to remove the ProjectSection(ProjectDependencies) = postProject sections from the .sln file.
