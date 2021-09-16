@@ -1,8 +1,10 @@
-
 # Convert Project Dependencies to MSBuild Project references
 
-ConvertProjDepToProjRef is a small tool to convert project dependencies in a Visual Studio solution file (.sln)
-into MSBuild project references (ProjectReference) in project files. It will do 95% of the work.
+ConvertProjDepToProjRef is a tool to convert project dependencies in a Visual Studio solution file (.sln)
+into MSBuild project references (ProjectReference) in project files. It will do 95% of the work.  
+Project dependencies in an .sln file are an older method to define build
+dependencies and are slower because MSBuild must first create meta projects
+files.
 
 ## Features
 
