@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!---
+Copyright (c) Victor Derks.
+SPDX-License-Identifier: MIT
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+
+    <!-- Build to a folder outside the source folders, making it easier to clean. -->
+    <BaseOutputPath>$(MSBuildThisFileDirectory)\build\bin</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)\build\intermediate</BaseIntermediateOutputPath>
+    <MSBuildProjectExtensionsPath>$(BaseIntermediateOutputPath)</MSBuildProjectExtensionsPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+
+  </PropertyGroup>
+</Project>
