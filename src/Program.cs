@@ -1,21 +1,18 @@
+// Copyright (c) Victor Derks.
+// SPDX-License-Identifier: MIT
+
 using Microsoft.Build.Construction;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using static System.Console;
 
-[assembly: CLSCompliant(true)]
-
-const int Success = 0;
-const int Failure = 1;
-const string ProjectReferenceItemType = "ProjectReference";
+const int success = 0;
+const int failure = 1;
+const string projectReferenceItemType = "ProjectReference";
 
 if (args.Length < 1)
 {
     WriteLine("Usage: ConvertProjDepToProjRef solution-filename.sln");
-    return Failure;
+    return failure;
 }
 
 try
@@ -44,12 +41,12 @@ try
         }
     }
 
-    return Success;
+    return success;
 }
 catch (Exception e)
 {
     WriteLine("Error: " + e.Message);
-    return Failure;
+    return failure;
 }
 
 
@@ -60,7 +57,7 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
 
     string projectRelativePath = Path.GetRelativePath(basePath!, referencedProject.AbsolutePath);
 
-    if (HasProjectReference(project, projectRelativePath, basePath!))
+    if (HasProjectReference(project!, projectRelativePath, basePath!))
     {
         WriteLine("  Project reference already exists, skipping");
         return;
@@ -68,7 +65,7 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
 
     List<KeyValuePair<string, string>> metadata = new();
 
-    if (string.IsNullOrEmpty(project.Sdk))
+    if (string.IsNullOrEmpty(project!.Sdk))
     {
         WriteLine("  Classic project format (Sdk property not used): Project GUID needed");
         metadata.Add(new KeyValuePair<string, string>("Project", referencedProject.ProjectGuid.ToLower(CultureInfo.InvariantCulture)));
@@ -83,7 +80,7 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
         WriteLine("  Reference to mixed project types: <ReferenceOutputAssembly> needed");
         metadata.Add(new KeyValuePair<string, string>("ReferenceOutputAssembly", "false"));
     }
-    _ = project.AddItem(ProjectReferenceItemType, projectRelativePath, metadata);
+    _ = project.AddItem(projectReferenceItemType, projectRelativePath, metadata);
 
     project.Save();
     WriteLine("  Added as ProjectReference");
@@ -91,7 +88,7 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
 
 bool HasProjectReference(ProjectRootElement project, string projectRelativePath, string basePath)
 {
-    return project.Items.Any(item => item.ItemType == ProjectReferenceItemType && PathEquals(item.Include, projectRelativePath, basePath));
+    return project.Items.Any(item => item.ItemType == projectReferenceItemType && PathEquals(item.Include, projectRelativePath, basePath));
 }
 
 static bool PathEquals(string relativePath1, string relativePath2, string basePath)
