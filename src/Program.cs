@@ -65,7 +65,7 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
 
     List<KeyValuePair<string, string>> metadata = new();
 
-    if (string.IsNullOrEmpty(project!.Sdk))
+    if (string.IsNullOrEmpty(project!.Sdk) && !string.IsNullOrEmpty(project.DefaultTargets))
     {
         WriteLine("  Classic project format (Sdk property not used): Project GUID needed");
         metadata.Add(new KeyValuePair<string, string>("Project", referencedProject.ProjectGuid.ToLower(CultureInfo.InvariantCulture)));
