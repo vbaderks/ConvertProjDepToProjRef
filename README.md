@@ -8,7 +8,7 @@ files.
 
 ## Features
 
-* .NET 7.0 App.
+* .NET 8.0 App.
 
 ## Build Instructions
 

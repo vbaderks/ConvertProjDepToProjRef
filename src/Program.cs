@@ -63,7 +63,7 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
         return;
     }
 
-    List<KeyValuePair<string, string>> metadata = new();
+    List<KeyValuePair<string, string>> metadata = [];
 
     if (string.IsNullOrEmpty(project!.Sdk) && !string.IsNullOrEmpty(project.DefaultTargets))
     {
