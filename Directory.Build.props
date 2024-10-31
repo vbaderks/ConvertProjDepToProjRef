@@ -7,16 +7,28 @@ SPDX-License-Identifier: MIT
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <!-- General -->
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>13.0</LangVersion>
+    <Features>strict</Features>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
+    <!-- Build -->
     <!-- Build to a folder outside the source folders, making it easier to clean. -->
     <BaseOutputPath>$(MSBuildThisFileDirectory)\build\bin</BaseOutputPath>
     <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)\build\intermediate</BaseIntermediateOutputPath>
     <MSBuildProjectExtensionsPath>$(BaseIntermediateOutputPath)</MSBuildProjectExtensionsPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <!-- Static Analysis -->
+    <AnalysisLevel>latest-All</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode> <!-- Enable all CAxxx code quality rules -->
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
   </PropertyGroup>
 </Project>

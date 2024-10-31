@@ -8,12 +8,23 @@ files.
 
 ## Features
 
-* .NET 8.0 App.
+* .NET 9.0 App.
 
 ## Build Instructions
 
-* git clone
-* dotnet build
+Open a console windows and execute the following commands:
+
+```bash
+git clone https://github.com/vbaderks/ConvertProjDepToProjRef.git
+```
+
+```bash
+cd ConvertProjDepToProjRef
+```
+
+```bash
+dotnet build -c Release
+```
 
 ## Usage Instructions
 

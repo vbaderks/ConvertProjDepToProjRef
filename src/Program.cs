@@ -11,31 +11,31 @@ const string projectReferenceItemType = "ProjectReference";
 
 if (args.Length < 1)
 {
-    WriteLine("Usage: ConvertProjDepToProjRef solution-filename.sln");
+    WriteLine("Usage: ConvertProjDepToProjRef <solution-filename.sln>");
     return failure;
 }
 
 try
 {
-    var solutionPath = args[0];
+    string solutionPath = args[0];
     if (!Path.IsPathRooted(solutionPath))
     {
         solutionPath = Path.GetFullPath(solutionPath, Directory.GetCurrentDirectory());
     }
 
     var solutionFile = SolutionFile.Parse(solutionPath);
-    WriteLine("Converting solution {0}", solutionPath);
+    WriteLine($"Converting solution {solutionPath}");
 
     foreach (var project in solutionFile.ProjectsInOrder)
     {
-        WriteLine("Analyzing project {0} ({1})", project.ProjectName, project.RelativePath);
+        WriteLine($"Analyzing project {project.ProjectName} ({project.RelativePath})");
         foreach (var dependencyGuid in project.Dependencies)
         {
-            WriteLine(" Found project dependency to {0}", dependencyGuid);
+            WriteLine($" Found project dependency to {dependencyGuid}");
             var dependedProject = solutionFile.ProjectsByGuid[dependencyGuid];
 
-            WriteLine("  Name = {0}", dependedProject.ProjectName);
-            WriteLine("  Absolute path = {0}", dependedProject.AbsolutePath);
+            WriteLine($"  Name = {dependedProject.ProjectName}");
+            WriteLine($"  Absolute path = {dependedProject.AbsolutePath}");
 
             AddProjectReference(project.AbsolutePath, dependedProject);
         }
@@ -45,12 +45,12 @@ try
 }
 catch (Exception e)
 {
-    WriteLine("Error: " + e.Message);
+    WriteLine($"Error: {e.Message}");
     return failure;
 }
 
 
-void AddProjectReference(string projectPath, ProjectInSolution referencedProject)
+static void AddProjectReference(string projectPath, ProjectInSolution referencedProject)
 {
     var project = ProjectRootElement.Open(projectPath);
     var basePath = Path.GetDirectoryName(projectPath);
@@ -86,7 +86,7 @@ void AddProjectReference(string projectPath, ProjectInSolution referencedProject
     WriteLine("  Added as ProjectReference");
 }
 
-bool HasProjectReference(ProjectRootElement project, string projectRelativePath, string basePath)
+static bool HasProjectReference(ProjectRootElement project, string projectRelativePath, string basePath)
 {
     return project.Items.Any(item => item.ItemType == projectReferenceItemType && PathEquals(item.Include, projectRelativePath, basePath));
 }
