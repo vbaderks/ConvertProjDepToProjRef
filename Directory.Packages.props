@@ -2,9 +2,8 @@
 Copyright (c) Victor Derks.
 SPDX-License-Identifier: MIT
 -->
-
 <Project>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Build" Version="17.11.4" />
+    <PackageVersion Include="Microsoft.Build" Version="17.12.6" />
   </ItemGroup>
 </Project>
