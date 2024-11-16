@@ -32,3 +32,16 @@ dotnet build -c Release
 * Update C++ projects that only perform custom builds as ConfigurationType “Utility”
 * Remove the RuntimeIdentifier element for C# projects that only perform custom builds
 * Use a text editor to remove the ProjectSection(ProjectDependencies) = postProject sections from the .sln file.
+
+## Prebuild Executable
+
+As convenience a prebuild executable for Windows x64 is available.
+Go to the [releases](https://github.com/vbaderks/ConvertProjDepToProjRef/releases) page and click on
+Assets at the bottom to show the files available in a release.
+Download the binary file ConvertProjDepToProjRef.exe.
+
+> [!NOTE]
+> Microsoft Defender SmartScreen may show a warning about an unrecognised app when running the executable for the first time.
+Click on "More Info" + "Run anyway" to continue.  
+The executable is signed, but Defender SmartScreen requires an Extended Validation (EV) code signing certificate, which is only available
+to commercial organisations, for direct full trust.
