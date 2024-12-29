@@ -1,4 +1,4 @@
-// Copyright (c) Victor Derks.
+// SPDX-FileCopyrightText: © 2020 Victor Derks
 // SPDX-License-Identifier: MIT
 
 using Microsoft.Build.Construction;
