@@ -15,7 +15,7 @@ files.
 
 ## Features
 
-* .NET 9.0 App.
+* .NET 10.0 App.
 
 ## Build Instructions
 
@@ -42,13 +42,13 @@ dotnet build -c Release
 
 ## Prebuild Executable
 
-As convenience a prebuild executable for Windows x64 is available.
+As convenience a prebuilt executable for Windows x64 is available.
 Go to the [releases](https://github.com/vbaderks/ConvertProjDepToProjRef/releases) page and click on
 Assets at the bottom to show the files available in a release.
 Download the binary file ConvertProjDepToProjRef.exe.
 
 > [!NOTE]
-> Microsoft Defender SmartScreen may show a warning about an unrecognised app when running the executable for the first time.
+> Microsoft Defender SmartScreen may show a warning about an unrecognized app when running the executable for the first time.
 Click on "More Info" + "Run anyway" to continue.  
 The executable is signed, but Defender SmartScreen requires an Extended Validation (EV) code signing certificate, which is only available
-to commercial organisations, for direct full trust.
+to commercial organizations, for direct full trust.
