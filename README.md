@@ -15,7 +15,7 @@ files.
 
 ## Features
 
-* .NET 10.0 App.
+* .NET 11.0 App.
 
 ## Build Instructions
 

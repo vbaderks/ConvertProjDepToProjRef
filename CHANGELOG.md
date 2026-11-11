@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 - Switched to .NET 8.0 standard artifacts layout
 - Make project conforming to REUSE
-- Updated the project to .NET 10.0
+- Updated the project to .NET 11.0
 
 ## [1.0.1 - 2024-11-16]
 
